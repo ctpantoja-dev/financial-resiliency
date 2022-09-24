@@ -22,90 +22,60 @@ def load_ph_data():
 def title():
     st.title("Promoting Savings Through Formal Institutions: A Step Towards Financial Resiliency")
 
-def background():
-    # Write the title and the subheader
+def study_context():
+    st.title("Study Context")
+    
+    with st.container():
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image("images\A.png")
+        with col2:
+            st.markdown("### Something bad happened and you need to come up with Php10,000!")
+    st.empty()
+    
+    with st.container():
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("### Do you think you can get this within 30 days?")
+        with col2:
+            st.image("images\B.png")
+    st.empty()
+    
+    with st.container():
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image("images\C.png")
+        with col2:
+            st.markdown("### More than 50% of Filipinos can not get 10,000 php within 30 Days")
+            st.markdown("### But is 10,000 php even enough for emergencies?")
+    st.empty()
+    
+    with st.container():
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("### The Philippines ranked 9th in Disaster Risk")
+            st.markdown("### Hospitalization cost for COVID: Php50,000 to Php200,000")
+            st.markdown("### These costs are hard to cover without enough savings")
+        with col2:
+            st.image("images\D.png")
+    
+def problem_statement():
     st.title(
-        "Promoting Savings Through Formal Institutions: A Step Towards Financial Resiliency"
+        "Problem Statement"
     )
-    st.subheader(
-        """
-        In line with the National Strategy for Financial Inclusion (NSFI) 2022-2028 by Bangko Sentral ng Pilipinas (BSP), this sprint aims to:
-        1. Profile financial inclusion (FI) metrics in the Philippines using survey data from World Bank.
-        2. Formulate policy recommendations to further improve access to financial services particularly to vulnerable sectors.
-        """
-    )
+    
+    with st.container():
+        col1, col2 = st.columns(2)
 
-    # Load photo
-    st.image("streamlit-photo-1.jpeg")
+        with col1:
+            st.image("images\E.png")
 
-
-def fi_state_ph():
-    # Write the title
-    st.title(
-        "This is the current state of FI in the Philippines."
-    )
-
-    # Load data
-    data = load_data()
-
-    # Fetch Philippine data
-    philippine_data = data[
-        data['economy'] == 'Philippines'
-        ]
-
-    # Create another column for debit card ownership
-    philippine_data['has_debit_card'] = philippine_data['fin2'].apply(
-        lambda x: 1 if x == 1 else 0
-    )
-
-    # Compute overall debit card ownership
-    percent_debit_card_ownership = philippine_data['has_debit_card'].sum() * 100.0 / philippine_data[
-        'wpid_random'].count()
-
-    # Partition the page into 2
-    col1, col2 = st.columns(2)
-
-    # Display text in column 1
-    col1.markdown(
-        "In the Philippines, there is still an opportunity to expand access to financial services: "
-    )
-
-    # Display metric in column 2
-    col2.metric(
-        label='% of Population with Debit Card',
-        value=percent_debit_card_ownership
-    )
-
-    # Display text
-    st.markdown("In terms of gender breakdown:")
-
-    # Create another column for gender
-    philippine_data['gender'] = philippine_data['female'].apply(
-        lambda x: 'male' if x == 1 else 'female'
-    )
-
-    # Compute breakdown of access to debit card by gender
-    debit_by_gender = philippine_data.groupby('gender').agg(
-        total_debit_card_owners=('has_debit_card', 'sum'),
-        total_population=('wpid_random', 'count')
-    ).reset_index()
-
-    # Compute % debit card ownership
-    debit_by_gender['% debit card ownership'] = debit_by_gender['total_debit_card_owners'] * 100.0 / debit_by_gender[
-        'total_population']
-
-    # Plot the data
-    fig, ax = plt.subplots(figsize=(6, 3), dpi=200)
-    ax.bar(
-        debit_by_gender["gender"],
-        debit_by_gender["% debit card ownership"],
-    )
-    ax.set_xlabel("Gender")
-    ax.set_ylabel("% Debit Card Ownership")
-
-    # Show the data
-    st.pyplot(fig)
-
+        with col2:
+            st.markdown("")
+            st.markdown("")
+            st.markdown("")
+            st.markdown("")
+            st.markdown("### What steps can we take to empower Filipinos to save for the 'rainy days'?")
 
 def fi_state_worldwide():
     # Write the title and the subheader
@@ -151,15 +121,25 @@ def objectives():
     st.title(
         "Objectives"
     )
+    
+    st.markdown("- ### To identify the factors affecting financial resilience")
+    st.markdown("- ### To identify financially vulnerable groups")
+    st.markdown("- ### To recommend policies that would improve financial resilience")
+    
 
-def data_sets():
+def dataset():
     st.title(
-        "Data Sets"
+        "Dataset"
     )
 
     ph_data = global_data[
         global_data['economy'] == 'Philippines'
     ]
+
+    st.image("images\F.png")
+    st.markdown("A global study on **144 countries**.")
+    st.markdown("Sample size: **154,923**")
+    st.markdown("Variables: **105**")
 
     # Display data
     st.dataframe(ph_data)
@@ -169,6 +149,29 @@ def methodology():
     st.title(
         "Methodology"
     )
+    
+    with st.container():
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.header("Inspect & Extract")
+            st.caption("Inspect how information is encoded in dataset.")
+            st.caption("Extract information relevant to Philippines.")
+            st.caption("Philippine data: sample size of 1,000")
+        with col2:
+            st.header("Explore")
+            st.markdown("")
+            st.markdown("")
+            st.caption("Conduct exploratory data analysis and visualizations.")
+        with col3:
+            st.header("Cluster")
+            st.markdown("")
+            st.markdown("")
+            st.caption("Perform K-Modes clustering to identify similar groups in the data.")
+        with col4:
+            st.header("Evaluate")
+            st.markdown("")
+            st.markdown("")
+            st.caption("Evaluate results and provide conclusions and recommendations.")
 
 def eda():
     st.title(
@@ -180,7 +183,7 @@ def eda():
         col1, col2 = st.columns(2)
 
         with col1:
-            st.image("passbook-1.jpg")
+            st.image("images\passbook-1.jpg")
 
         with col2:
             st.subheader("Only 1 in every 3 Filipinos has a bank account")
@@ -193,14 +196,20 @@ def eda():
     
     st.empty()
     st.empty()
+    st.subheader("Not only do they have access to emergency funds, but they are more self-resilient.")
+    st.image("images\I.png")
+    
+    st.empty()
+    st.empty()
     st.subheader("But where does the Philippines stand in terms of Financial Account coverage?")
     plot_sea_fi_inclusion()
+    st.markdown("In comparison with other  ASEAN nations,  The Philippines is in the middle in terms of Financial Inclusion with a **34.4%**.")
     
     st.empty()
     st.empty()
     st.subheader("What is hindering unbanked Filipinos from creating financial accounts?")
     st.image("reasons_why_filipinos_dont_own_a_bank_account.jpg")
-    st.markdown("In comparison with other  ASEAN nations,  The Philippines is in the middle in terms of Financial Inclusion with a **34.4%**.")
+    st.markdown("Poverty Problem: 51% of the respondents who gave this reason also answered that they do not have emergency funds; there is a group of people who don't have extra money to save")
     
 def plot_sea_fi_inclusion():
     global_data['with bank account'] = global_data.apply(
@@ -489,25 +498,16 @@ def conclusion():
     st.title(
         "Conclusion"
     )
-    st.markdown(
-        '''
-        - **Access to bank account empowers Filipinos to save and be more self-resilient against unexpected emergencies.**
-        - **There is still a huge opportunity for bank account access to Filipinos, and most of it are for reasons that we can address.**
-        '''
-    )
+    st.markdown("- ### Access to bank account empowers Filipinos to save and be more self-resilient against unexpected emergencies.")
+    st.markdown("- ### There is still a huge opportunity for bank account access to Filipinos, and most of it are for reasons that we can address.")
 
 def recommendations():
-    # Write the title
     st.title(
         "What We Can Do"
     )
-    st.markdown(
-        '''
-        - **Simplify account opening processes and removing fees for no-frills accounts.**
-        - **Offer a range of products specifically designed to help people cope with emergencies.**
-        - **Redefine traditional financial literacy to include digital literacy.**
-        '''
-    )
+    st.markdown("- ### Simplify account opening processes and removing fees for no-frills accounts.")
+    st.markdown("- ### Offer a range of products specifically designed to help people cope with emergencies.")
+    st.markdown("- ### Redefine traditional financial literacy to include digital literacy.")
 
 
 def the_team():
@@ -532,10 +532,10 @@ global_data = load_data()
 
 list_of_pages = [
     "Title",
-    "Background",
+    "Study Context",
     "Problem Statement",
     "Objectives",
-    "Data Sets",
+    "Dataset",
     "Methodology",
     "Exploratory Data Analysis",
     "Machine Learning / Modelling",
@@ -548,14 +548,14 @@ selection = st.sidebar.radio("", list_of_pages)
 
 if selection == "Title":
     title()
-elif selection == "Background":
-    background()
+elif selection == "Study Context":
+    study_context()
 elif selection == "Problem Statement":
-    fi_state_ph()
+    problem_statement()
 elif selection == "Objectives":
     objectives()
-elif selection == "Data Sets":
-    data_sets()
+elif selection == "Dataset":
+    dataset()
 elif selection == "Methodology":
     methodology()
 elif selection == "Exploratory Data Analysis":
