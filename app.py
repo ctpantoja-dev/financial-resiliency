@@ -491,8 +491,9 @@ def variable_tester(var, ph_data):
     
 def ml_modelling():
     st.title(
-        "Machine Learning / Modelling"
+        "Clustering"
     )
+    st.image('images/J.png')
 
 def conclusion():
     st.title(
