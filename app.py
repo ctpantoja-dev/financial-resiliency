@@ -28,7 +28,7 @@ def study_context():
     with st.container():
         col1, col2 = st.columns(2)
         with col1:
-            st.image("images\A.png")
+            st.image("images/A.png")
         with col2:
             st.markdown("### Something bad happened and you need to come up with Php10,000!")
     st.empty()
@@ -38,13 +38,13 @@ def study_context():
         with col1:
             st.markdown("### Do you think you can get this within 30 days?")
         with col2:
-            st.image("images\B.png")
+            st.image("images/B.png")
     st.empty()
     
     with st.container():
         col1, col2 = st.columns(2)
         with col1:
-            st.image("images\C.png")
+            st.image("images/C.png")
         with col2:
             st.markdown("### More than 50% of Filipinos can not get 10,000 php within 30 Days")
             st.markdown("### But is 10,000 php even enough for emergencies?")
@@ -57,7 +57,7 @@ def study_context():
             st.markdown("### Hospitalization cost for COVID: Php50,000 to Php200,000")
             st.markdown("### These costs are hard to cover without enough savings")
         with col2:
-            st.image("images\D.png")
+            st.image("images/D.png")
     
 def problem_statement():
     st.title(
@@ -68,7 +68,7 @@ def problem_statement():
         col1, col2 = st.columns(2)
 
         with col1:
-            st.image("images\E.png")
+            st.image("images/E.png")
 
         with col2:
             st.markdown("")
@@ -136,7 +136,7 @@ def dataset():
         global_data['economy'] == 'Philippines'
     ]
 
-    st.image("images\F.png")
+    st.image("images/F.png")
     st.markdown("A global study on **144 countries**.")
     st.markdown("Sample size: **154,923**")
     st.markdown("Variables: **105**")
@@ -183,7 +183,7 @@ def eda():
         col1, col2 = st.columns(2)
 
         with col1:
-            st.image("images\passbook-1.jpg")
+            st.image("images/passbook-1.jpg")
 
         with col2:
             st.subheader("Only 1 in every 3 Filipinos has a bank account")
@@ -197,7 +197,7 @@ def eda():
     st.empty()
     st.empty()
     st.subheader("Not only do they have access to emergency funds, but they are more self-resilient.")
-    st.image("images\I.png")
+    st.image("images/I.png")
     
     st.empty()
     st.empty()
